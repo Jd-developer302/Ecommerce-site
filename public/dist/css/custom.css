@@ -1,0 +1,56 @@
+.tableClass {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.tdClass {
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    text-align: left !important;
+    color: #000 !important;
+}
+
+.thClass {
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    text-align: left !important;
+    background-color: #FABA36 !important;
+    border: 1px solid #ccc !important;
+    color: #000 !important;
+}
+.delivered {
+    background-color: #315c06;
+}
+.no_answer {
+    background-color: #FABA36;
+}
+.cancelled {
+    background-color: #d9573d;
+}
+.order_placed {
+    background-color: #fcdcdc;
+}
+.awaiting_conformation {
+    background-color: #fad29b;
+}
+.order_conformed {
+    background-color: #c2fff9;
+}
+.packed {
+    background-color: #49ada3;
+}
+.resheduled {
+    background-color: #a89c99;
+}
+.completed {
+    background-color: rgb(0, 131, 7);
+}
+.invoice_printed {
+    background-color: #c6c2ff;
+}
+input[type="checkbox"] {
+    transform: scale(1.5);
+  }
+  

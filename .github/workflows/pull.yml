@@ -1,0 +1,51 @@
+name: Deploy Laravel App UAE
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      # Debug Step: Confirm the Current User
+      - name: Check Runner User and Permissions
+        run: |
+          echo "Current User: $(whoami)"
+          echo "Current Directory: $(pwd)"
+          echo "Directory Ownership:"
+          ls -ld /var/www/html/winscart
+
+      # Set Git Safe Directory
+      - name: Set Git Safe Directory
+        run: git config --global --add safe.directory /var/www/html/winscart
+
+      # Fix Permissions
+      #- name: Fix Permissions
+       # run: |
+         # sudo chown -R $(whoami):$(whoami) /var/www/html/winscart
+         # sudo chmod -R u+rw /var/www/html/winscart/.git
+
+      # Pull the Latest Code from GitHub
+      - name: Pull Latest Changes
+        run: git pull origin main
+        working-directory: /var/www/html/winscart
+
+      # Install Composer Dependencies
+      - name: Install PHP Dependencies
+        run: composer install --no-dev --optimize-autoloader
+        working-directory: /var/www/html/winscart
+
+
+      # Run Laravel Commands
+      - name: Run Laravel Commands
+        run: |
+          php artisan cache:clear
+          php artisan config:clear
+          php artisan route:clear
+          php artisan migrate --force
+          php artisan config:cache
+          php artisan route:cache
+        working-directory: /var/www/html/winscart
